@@ -18,6 +18,7 @@ RCT_REMAP_METHOD(getIcon, resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCT
     });
 }
 
+// Adding new parameter to align with parent changeIcon method
 RCT_REMAP_METHOD(changeIcon, iconName:(NSString *)iconName newPackageName:(NSString *)newPackageName resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
     dispatch_async(dispatch_get_main_queue(), ^{
         NSError *error = nil;

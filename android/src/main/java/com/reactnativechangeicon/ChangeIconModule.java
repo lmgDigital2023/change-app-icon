@@ -92,6 +92,7 @@ public class ChangeIconModule extends ReactContextBaseJavaModule implements Appl
         this.componentClass = activeClass;
         activity.getApplication().registerActivityLifecycleCallbacks(this);
         iconChanged = true;
+        // Closing the stale activity after icon is changed
         this.completeIconChange();
     }
 
