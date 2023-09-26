@@ -60,7 +60,7 @@ public class ChangeIconModule extends ReactContextBaseJavaModule implements Appl
     }
 
     @ReactMethod
-    public void changeIcon(String iconName, Promise promise) {
+     public void changeIcon(String iconName, String newPackageName, Promise promise) {
         final Activity activity = getCurrentActivity();
         final String activityName = activity.getComponentName().getClassName();
         if (activity == null) {
@@ -72,7 +72,8 @@ public class ChangeIconModule extends ReactContextBaseJavaModule implements Appl
         }
 
         final String newIconName = (iconName == null || iconName.isEmpty()) ? "Default" : iconName;
-        final String activeClass = this.packageName + ".MainActivity" + newIconName;
+        final String newPackage = (newPackageName == null || newPackageName.isEmpty()) ? this.packageName : newPackageName;
+        final String activeClass =  newPackage + ".MainActivity" + newIconName;
         if (this.componentClass.equals(activeClass)) {
             promise.reject("ANDROID:ICON_ALREADY_USED:" + this.componentClass);
             return;
@@ -91,6 +92,7 @@ public class ChangeIconModule extends ReactContextBaseJavaModule implements Appl
         this.componentClass = activeClass;
         activity.getApplication().registerActivityLifecycleCallbacks(this);
         iconChanged = true;
+        this.completeIconChange();
     }
 
     private void completeIconChange() {
