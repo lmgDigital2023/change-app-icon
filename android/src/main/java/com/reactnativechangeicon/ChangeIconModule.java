@@ -60,7 +60,7 @@ public class ChangeIconModule extends ReactContextBaseJavaModule implements Appl
     }
 
     @ReactMethod
-    public void changeIcon(String iconName, String newPackageName, Promise promise) {
+     public void changeIcon(String iconName, String newPackageName, Promise promise) {
         final Activity activity = getCurrentActivity();
         final String activityName = activity.getComponentName().getClassName();
         if (activity == null) {
